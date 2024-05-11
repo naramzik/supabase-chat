@@ -29,8 +29,8 @@ export function useCreateUserMutation() {
       queryClient.invalidateQueries({
         predicate: (query) => query.queryKey[0] === 'user',
       });
-      push('/');
       toast.success('회원가입 되었습니다.');
+      push('/');
     },
   });
 }

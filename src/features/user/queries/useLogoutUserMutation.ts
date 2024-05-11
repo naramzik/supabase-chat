@@ -15,8 +15,8 @@ export function useLogoutUserMutation() {
           return query.queryKey[0] === 'user';
         },
       });
-      push('/auth');
       toast.success('로그아웃 되었습니다.');
+      push('/auth');
     },
   });
 }

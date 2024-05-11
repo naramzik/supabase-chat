@@ -14,10 +14,14 @@ export function useLoginUserMutation() {
 
   return useMutation({
     mutationFn: async (data: LoginUserMutationRequest) => {
-      return await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email: data.email,
         password: data.password,
       });
+      if (error) {
+        toast.error('이메일 혹은 비밀번호를 다시 확인해주세요.');
+        throw error;
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -27,9 +31,6 @@ export function useLoginUserMutation() {
       });
       push('/');
       toast.success('로그인 되었습니다.');
-    },
-    onError: (error) => {
-      console.log(error);
     },
   });
 }

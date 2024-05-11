@@ -26,8 +26,8 @@ export function useSignOutUserMutation() {
           return query.queryKey[0] === 'user';
         },
       });
-      push('/auth');
       toast.success('탈퇴되었습니다.');
+      push('/auth');
     },
   });
 }
