@@ -32,7 +32,7 @@ export type Database = {
       }
       Message: {
         Row: {
-          author: string
+          author: string | null
           chatRoomId: string
           createdAt: string
           id: string
@@ -40,7 +40,7 @@ export type Database = {
           updatedAt: string
         }
         Insert: {
-          author: string
+          author?: string | null
           chatRoomId?: string
           createdAt?: string
           id?: string
@@ -48,7 +48,7 @@ export type Database = {
           updatedAt?: string
         }
         Update: {
-          author?: string
+          author?: string | null
           chatRoomId?: string
           createdAt?: string
           id?: string
