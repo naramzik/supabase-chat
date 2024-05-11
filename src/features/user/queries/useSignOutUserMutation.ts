@@ -1,8 +1,9 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import axios from "axios";
-import assert from "assert";
-import { supabase } from "@/supabase/lib/client";
+import toast from 'react-hot-toast';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/router';
+import axios from 'axios';
+import assert from 'assert';
+import { supabase } from '@/supabase/lib/client';
 
 export function useSignOutUserMutation() {
   const queryClient = useQueryClient();
@@ -11,8 +12,8 @@ export function useSignOutUserMutation() {
   return useMutation({
     mutationFn: async () => {
       const { data: session } = await supabase.auth.getSession();
-      assert(session.session, "The user is not authenticated");
-      return axios.delete("/api/user", {
+      assert(session.session, 'The user is not authenticated');
+      return axios.delete('/api/user', {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${session.session.access_token}`,
@@ -22,10 +23,11 @@ export function useSignOutUserMutation() {
     onSuccess: () => {
       queryClient.invalidateQueries({
         predicate: (query) => {
-          return query.queryKey[0] === "user";
+          return query.queryKey[0] === 'user';
         },
       });
-      push("/auth");
+      toast.success('탈퇴되었습니다.');
+      push('/auth');
     },
   });
 }
