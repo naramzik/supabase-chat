@@ -14,11 +14,12 @@ function Page() {
   const { mutate: createRoom } = useCreateChatRoomMutation();
 
   const createRoomHandler = (chatRoomName: string) => {
-    if (chatRoomName) {
-      createRoom({ room_name: chatRoomName });
-    } else {
+    if (!chatRoomName) {
       toast.error('방 이름을 입력해주세요');
+      return;
     }
+
+    createRoom({ room_name: chatRoomName });
     setChatRoomName('');
   };
 
