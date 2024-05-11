@@ -10,12 +10,13 @@
     "supabase-typegen": "supabase gen types typescript --project-id 'imnhiisfzfpmegjfklrl' --schema public > src/supabase/types.ts"
   },
   "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
     "@prisma/client": "5.13.0",
     "@supabase/supabase-js": "^2.43.1",
     "@tanstack/react-query": "^5.35.1",
-    "next": "14.2.3"
+    "axios": "^1.6.8",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@channel.io/eslint-config": "^2.0.7",
