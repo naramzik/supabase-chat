@@ -1,6 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { supabase } from "@/supabase/lib/client";
+import toast from 'react-hot-toast';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/router';
+import { supabase } from '@/supabase/lib/client';
 
 interface LoginUserMutationRequest {
   email: string;
@@ -21,10 +22,11 @@ export function useLoginUserMutation() {
     onSuccess: () => {
       queryClient.invalidateQueries({
         predicate: (query) => {
-          return query.queryKey[0] === "user";
+          return query.queryKey[0] === 'user';
         },
       });
-      push("/");
+      push('/');
+      toast.success('로그인 되었습니다.');
     },
     onError: (error) => {
       console.log(error);

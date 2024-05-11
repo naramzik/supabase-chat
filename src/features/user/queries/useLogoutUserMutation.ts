@@ -1,6 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { supabase } from "@/supabase/lib/client";
+import toast from 'react-hot-toast';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/router';
+import { supabase } from '@/supabase/lib/client';
 
 export function useLogoutUserMutation() {
   const queryClient = useQueryClient();
@@ -11,10 +12,11 @@ export function useLogoutUserMutation() {
     onSuccess: () => {
       queryClient.invalidateQueries({
         predicate: (query) => {
-          return query.queryKey[0] === "user";
+          return query.queryKey[0] === 'user';
         },
       });
-      push("/auth");
+      push('/auth');
+      toast.success('로그아웃 되었습니다.');
     },
   });
 }

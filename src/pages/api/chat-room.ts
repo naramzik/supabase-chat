@@ -25,6 +25,7 @@ export default async function ChatRoom(
         .single();
       return res.status(200).json({
         roomId: data?.id,
+        room_name: req.body.room_name,
       });
     }
 
